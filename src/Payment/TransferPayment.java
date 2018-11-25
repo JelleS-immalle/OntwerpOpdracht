@@ -1,4 +1,5 @@
 package Payment;
 
-public class TransferPayment {
+public class TransferPayment extends Payment {
+
 }

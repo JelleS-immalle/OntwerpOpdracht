@@ -1,4 +1,7 @@
 package Person;
 
-public class Courier {
+public class Courier extends Person{
+    private boolean isAvailable;
+
+
 }
