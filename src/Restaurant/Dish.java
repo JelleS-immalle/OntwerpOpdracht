@@ -1,5 +1,6 @@
 package Restaurant;
 
+import Common.Position;
 import Payment.Money;
 
 public class Dish {
@@ -10,5 +11,10 @@ public class Dish {
     private int maximumDeliveryTime;
     private Allergeen[] allergeens;
 
+    private Restaurant restaurant;
 
+
+    public Position getPosition(){
+        return restaurant.getPosition();
+    }
 }

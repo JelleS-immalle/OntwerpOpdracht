@@ -5,5 +5,7 @@ public class ContactInfo {
     private String email;
     private String tel;
 
-
+    public Address getAddress(){
+        return this.address;
+    }
 }

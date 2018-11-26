@@ -6,5 +6,7 @@ public class Address {
     private String nummer;
     private Position position;
 
-
+    public Position getPosition(){
+        return this.position;
+    }
 }
