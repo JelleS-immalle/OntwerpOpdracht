@@ -5,7 +5,6 @@ import DistanceAPI.DistanceCalculator;
 import Order.Order;
 
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -16,11 +15,11 @@ public class Courier extends Person{
     private Position currentPosition;
 
     private List<Order> orders;
-    private List<Order> relevanteOrders;
     private int courierPoints;
 
     public List<Order> geefBeschikbareLeveringen(){
         DistanceCalculator dc = new DistanceCalculator();
+        List<Order> relevanteOrders = new ArrayList<Order>();
 
         for(Order o : orders){
             Position restaurantPosition = o.getRestaurantPosition();
@@ -54,7 +53,7 @@ public class Courier extends Person{
     private List<Order> getOudsteOrders(List<Order> lijst){
         lijst.sort(Comparator.naturalOrder());
 
-        List<Order> teReturnenOrders = new ArrayList<Order>();
+        List<Order> teReturnenOrders = new ArrayList<>();
         for(int i = 0; i < 3; i++){
             teReturnenOrders.add(lijst.get(i));
         }
