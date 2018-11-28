@@ -6,6 +6,6 @@ public class Payment {
     private String response;
     private Date time;
     private String detail;
-    private static Money bedrag;
+    private Money bedrag;
 
 }
