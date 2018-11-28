@@ -4,6 +4,9 @@ import Common.Position;
 import DistanceAPI.DistanceCalculator;
 import Order.Order;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -14,6 +17,7 @@ public class Courier extends Person{
 
     private List<Order> orders;
     private List<Order> relevanteOrders;
+    private int courierPoints;
 
     public List<Order> geefBeschikbareLeveringen(){
         DistanceCalculator dc = new DistanceCalculator();
@@ -23,7 +27,24 @@ public class Courier extends Person{
 
             // Afstand kleiner dan 5km?
             if(dc.getDistance(currentPosition, restaurantPosition) < 5000){
-                relevanteOrders.add(o);
+                LocalDateTime bestelTijd = o.getBestelTijd();
+
+                Duration tempDuration = Duration.between(
+                        bestelTijd,
+                        LocalDateTime.now());
+
+                // Order minder dan 5 minuten geleden geplaatst?
+                if(tempDuration.toMinutes() < 5){
+                    int orderAveragePoints = o.getAverageDeliveryPoints();
+                    // Heeft de courier meer punten dan het gemiddelde uit het order
+                    if(orderAveragePoints < courierPoints){
+                        relevanteOrders.add(o);
+                    }
+                }
+                // Order meer dan 5 minuten geleden geplaatst?
+                else{
+                    relevanteOrders.add(o);
+                }
             }
         }
 
